@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiSticker - AI Crafts and Organizes Your Daily Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .ai-gradient-text {
+            background: linear-gradient(45deg, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-container iframe {
+            width: 90%;
+            height: 90%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<section class="text-gray-600 body-font h-screen flex items-center justify-center">
+  <div class="container mx-auto px-5 py-24">
+    <div class="flex flex-col items-center text-center">
+      <h1 class="title-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4 font-bold ai-gradient-text leading-tight">
+        AiSticker - AI Crafts and Organizes Your Daily Tasks
+      </h1>
+      <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-4" onclick="openVideo()" id="watchVideoButton">Watch Video</button>
+      <h2 class="text-xl mb-8 font-medium">Available within a month on MacOS / Windows / iOS / Android</h2>
+      <div class="flex flex-col sm:flex-row justify-center items-center">
+        <input type="email" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
+        <button class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
+      </div>
+      <div class="mt-6">
+        <a href="https://www.paypal.com/ncp/payment/YCVHAMYHDTE5C" target="_blank" class="inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Pre-order AiSticker Plus</a>
+        <p class="mt-2 text-sm">Pre-order now for $19.90 (Regular price: $199) - Limited time offer!</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-8">
+      <!-- Feature 1 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Versatile Input Methods</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Capture ideas effortlessly with multiple input options including text, voice, and screen capture, catering to all your note-taking needs.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature 2 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">AI-Powered Optimization</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Enhance your notes with AI-driven formatting, title generation, and content optimization to improve clarity and readability.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature 3 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Task Breakdown</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Automatically decompose complex notes into actionable tasks, helping you organize and prioritize your work efficiently.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature 4 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Smart Context Analysis</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Leverage AI to understand the context of your notes, providing relevant suggestions and improving your overall productivity.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature 5 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Seamless Integration</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Easily integrate with your existing workflow by supporting various export options and third-party app connections.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature 6 -->
+      <div class="p-8 md:w-1/2">
+        <div class="flex rounded-lg h-full bg-blue-50 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Personalized Experience</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Adapt to your unique note-taking style with customizable AI assistance, enhancing your productivity over time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="videoModal" class="video-modal">
+    <div class="video-container">
+        <span class="close-btn" onclick="closeVideo()">&times;</span>
+        <iframe id="youtubeVideo" width="90%" height="90%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 检查是否是用户首次访问
+      if (!localStorage.getItem('hasVisited')) {
+        // 模拟点击 "watch video" 按钮
+        const watchVideoButton = document.getElementById('watchVideoButton');
+        if (watchVideoButton) {
+          watchVideoButton.click();
+        }
+            // 设置标记,表示用户已访问过
+        localStorage.setItem('hasVisited', 'true');
+      }
+    });
+
+    function openVideo() {
+        document.getElementById('videoModal').style.display = 'block';
+        document.getElementById('youtubeVideo').src = "https://www.youtube.com/embed/4pF4RtoaQ1w?autoplay=1&cc_load_policy=0&cc_lang_pref=&yt:cc=off";
+    }
+
+    function closeVideo() {
+        document.getElementById('videoModal').style.display = 'none';
+        document.getElementById('youtubeVideo').src = "";
+    }
+</script>
+
+<!-- Newly added content starts -->
+<section class="text-gray-600 body-font">
+  <div class="container mx-auto px-5 py-24">
+    <div class="flex flex-col items-center text-center">
+      <div class="flex flex-col sm:flex-row justify-center items-center">
+        <input type="email" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
+        <button class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
+      </div>
+      <div class="mt-6">
+        <a href="https://www.paypal.com/ncp/payment/YCVHAMYHDTE5C" target="_blank" class="inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Pre-order AiSticker Plus</a>
+        <p class="mt-2 text-sm">Pre-order now for $19.90 (Regular price: $199) - Limited time offer!</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Newly added content ends -->
+
+<!-- 添加联系方式 -->
+<footer class="text-gray-600 body-font">
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+      Contact us: cloudstickerforapple@gmail.com
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
