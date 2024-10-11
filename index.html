@@ -68,8 +68,8 @@
       <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-4" onclick="openVideo()" id="watchVideoButton">Watch Video</button>
       <h2 class="text-xl mb-8 font-medium">Available within a month on MacOS / Windows / iOS / Android</h2>
       <div class="flex flex-col sm:flex-row justify-center items-center">
-        <input type="email" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
-        <button class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
+        <input type="email" id="emailInput" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
+        <button onclick="subscribe()" class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
       </div>
       <div class="mt-6">
         <a href="https://www.paypal.com/ncp/payment/YCVHAMYHDTE5C" target="_blank" class="inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Pre-order AiSticker Plus</a>
@@ -213,6 +213,40 @@
         document.getElementById('videoModal').style.display = 'none';
         document.getElementById('youtubeVideo').src = "";
     }
+
+    function handleSubscription(email, inputId) {
+      if (!email) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      fetch(`https://api.onesticker.app/subscribe/?email=${encodeURIComponent(email)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success === true) {
+            alert('You have been subscribed. We will notify you when AiSticker launches.');
+          } else if (data.error === "Email already subscribed") {
+            alert('This email is already subscribed. We will notify you when AiSticker launches.');
+          } else {
+            alert('Subscription failed. Please try again later.');
+          }
+          document.getElementById(inputId).value = ''; // Clear input field
+        })
+        .catch(error => {
+          console.error('Subscription error:', error);
+          alert('An error occurred during subscription. Please try again later.');
+        });
+    }
+
+    function subscribe() {
+      const email = document.getElementById('emailInput').value;
+      handleSubscription(email, 'emailInput');
+    }
+
+    function subscribe2() {
+      const email = document.getElementById('emailInput2').value;
+      handleSubscription(email, 'emailInput2');
+    }
 </script>
 
 <!-- Newly added content starts -->
@@ -220,8 +254,8 @@
   <div class="container mx-auto px-5 py-24">
     <div class="flex flex-col items-center text-center">
       <div class="flex flex-col sm:flex-row justify-center items-center">
-        <input type="email" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
-        <button class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
+        <input type="email" id="emailInput2" placeholder="Enter your email to get notified when available" class="w-full sm:w-96 md:w-[32rem] lg:w-[36rem] border border-gray-300 py-2 px-4 rounded text-lg mb-2 sm:mb-0">
+        <button onclick="subscribe2()" class="ml-0 sm:ml-4 inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Subscribe</button>
       </div>
       <div class="mt-6">
         <a href="https://www.paypal.com/ncp/payment/YCVHAMYHDTE5C" target="_blank" class="inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">Pre-order AiSticker Plus</a>
